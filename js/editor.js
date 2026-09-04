@@ -1,7 +1,8 @@
 ( function( wp ) {
     const { registerPlugin } = wp.plugins;
     const PluginPostStatusInfo = wp.editor?.PluginPostStatusInfo || wp.editPost.PluginPostStatusInfo;
-    const { createElement: el, useEffect } = wp.element;
+    const PluginPrePublishPanel = wp.editor?.PluginPrePublishPanel || wp.editPost.PluginPrePublishPanel;
+    const { createElement: el, useEffect, Fragment } = wp.element;
     const { useSelect, useDispatch } = wp.data;
     const { Notice } = wp.components;
     const { __ } = wp.i18n;
@@ -63,18 +64,23 @@
         }
 
         if ( isKeywordEmpty ) {
-            return el( PluginPostStatusInfo, {},
-                el( 'div', { className: 'wvs-validation-wrapper' },
-                    el( Notice, { status: 'error', isDismissible: false },
-                        __( 'A focus keyphrase is required before publishing.', 'wordpress-validate-seo' )
-                    )
+            const errorNotice = el( Notice, { status: 'error', isDismissible: false },
+                __( 'You must define a Focus Keyphrase to publish this post', 'wordpress-validate-seo' )
+            );
+
+            return el( Fragment, {},
+                el( PluginPostStatusInfo, {},
+                    el( 'div', { className: 'wvs-validation-wrapper' }, errorNotice )
+                ),
+                el( PluginPrePublishPanel, {},
+                    el( 'div', { className: 'wvs-validation-wrapper-prepublish' }, errorNotice )
                 )
             );
         }
 
         return el( PluginPostStatusInfo, {},
             el( Notice, { status: 'success', isDismissible: false },
-                __( 'Focus keyphrase is set.', 'wordpress-validate-seo' )
+                __( 'Focus keyphrase defined', 'wordpress-validate-seo' )
             )
         );
     };

@@ -3,13 +3,13 @@
  * Plugin Name: SEO Validation
  * Plugin URI: https://github.com/octaviotron/wordpress-validate-seo
  * Description: Prevent publishing if Yoast SEO focus keyphrase is missing.
- * Version: 0.1.2
+ * Version: 0.1.6
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Author: Octavio Rossell
  * Author URI: https://github.com/octaviotron
- * License: GPL-2.0-or-later
- * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * License: GPLv3
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain: wordpress-validate-seo
  * Domain Path: /languages
  */
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'WORDPRESS_VALIDATE_SEO_VERSION', '0.1.2' );
+define( 'WORDPRESS_VALIDATE_SEO_VERSION', '0.1.6' );
 
 /**
  * Load plugin textdomain.

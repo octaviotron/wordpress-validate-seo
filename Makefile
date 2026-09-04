@@ -7,9 +7,11 @@ json:
 	wp i18n make-json languages/
 
 zip:
-	mkdir -p dist
-	rm -f dist/wordpress-validate-seo.zip
-	zip -r dist/wordpress-validate-seo.zip . -x "*.git*" "*node_modules*" "*dist*" "Makefile" "*.DS_Store" "*Thumbs.db"
+	rm -rf dist/wordpress-validate-seo dist/wordpress-validate-seo.zip
+	mkdir -p dist/wordpress-validate-seo
+	cp -r js languages wordpress-validate-seo.php README.md dist/wordpress-validate-seo/
+	cd dist && zip -r wordpress-validate-seo.zip wordpress-validate-seo
+	rm -rf dist/wordpress-validate-seo
 
 clean:
 	rm -rf dist/
